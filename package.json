@@ -1,6 +1,6 @@
 {
   "name": "esbuild-plugin-fileloc",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Support __dirname, __filename, __line and additional global variables with esbuild",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
