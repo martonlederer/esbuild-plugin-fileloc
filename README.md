@@ -1,6 +1,6 @@
 # esbuild-plugin-fileloc
 
-Support `__dirname`, `__filename` and additional global variables with esbuild
+Support `__dirname`, `__filename`, `__line` and additional global variables with esbuild
 
 ## Install
 
@@ -16,13 +16,14 @@ npm i -D esbuild-plugin-fileloc
 
 ## Usage
 
-There are 4 global variables available currently:
+There are 5 global variables available currently:
 
 ```ts
 console.log(__dirname); // absolute dirname in source
 console.log(__filename); // absolute filename in source
 console.log(__relativedirname); // relative dirname in source
 console.log(__relativefilename); // relative filename in source
+console.log(__line); // line number
 ```
 
 ## Typescript declarations
