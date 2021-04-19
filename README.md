@@ -1,6 +1,6 @@
 # esbuild-plugin-fileloc
 
-Support **dirname, **filename and additional global variables with esbuild
+Support `__dirname`, `__filename` and additional global variables with esbuild
 
 ## Install
 
