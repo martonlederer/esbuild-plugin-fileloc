@@ -16,13 +16,15 @@ export const filelocPlugin = (options?: FilelocPluginOptions): Plugin => ({
       { filter: /.\.(js|ts|jsx|tsx)$/, namespace: "file" },
       async (args) => {
         const isWindows = /^win/.test(process.platform);
-        const esc = p => isWindows ? p.replace(/\\/g, '/') : p;
+        const esc = (p) => (isWindows ? p.replace(/\\/g, "/") : p);
         const variables = `
         const __fileloc = {
           filename: "${esc(args.path)}",
           dirname: "${esc(path.dirname(args.path))}",
           relativefilename: "${esc(path.relative(rootDir, args.path))}",
-          relativedirname: "${esc(path.relative(rootDir, path.dirname(args.path)))}"
+          relativedirname: "${esc(
+            path.relative(rootDir, path.dirname(args.path))
+          )}"
         };
         let __line = 0;
       `;
