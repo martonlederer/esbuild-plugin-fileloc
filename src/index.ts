@@ -1,5 +1,6 @@
 import { Plugin, Loader } from "esbuild";
 import path from "path";
+import process from "process";
 import fs from "fs-extra";
 
 interface FilelocPluginOptions {
@@ -14,12 +15,14 @@ export const filelocPlugin = (options?: FilelocPluginOptions): Plugin => ({
     build.onLoad(
       { filter: /.\.(js|ts|jsx|tsx)$/, namespace: "file" },
       async (args) => {
+        const isWindows = /^win/.test(process.platform);
+        const esc = p => isWindows ? p.replace(/\\/g, '/') : p;
         const variables = `
         const __fileloc = {
-          filename: "${args.path}",
-          dirname: "${path.dirname(args.path)}",
-          relativefilename: "${path.relative(rootDir, args.path)}",
-          relativedirname: "${path.relative(rootDir, path.dirname(args.path))}"
+          filename: "${esc(args.path)}",
+          dirname: "${esc(path.dirname(args.path))}",
+          relativefilename: "${esc(path.relative(rootDir, args.path))}",
+          relativedirname: "${esc(path.relative(rootDir, path.dirname(args.path)))}"
         };
         let __line = 0;
       `;
