@@ -26,6 +26,22 @@ console.log(__relativefilename); // relative filename in source
 console.log(__line); // line number
 ```
 
+### With serverless-esbuild
+`serverless.yml`
+```yaml
+custom:
+  esbuild:
+    plugins: esbuild-plugins.js
+```
+
+And `esbuild-plugins.js`:
+```js
+const { filelocPlugin } = require('esbuild-plugin-fileloc');
+
+// default export should be an array of plugins
+module.exports = [filelocPlugin()];
+```
+
 ## Typescript declarations
 
 To add type declarations for the global variables to your project you can just add this line to your ts file:
